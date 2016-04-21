@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#! /home/b51816/localpython/python3/bin/python3
 import sqlite3
 import os
 from flask import  Flask, request, session, g, redirect, url_for, abort, render_template, flash
@@ -13,7 +13,7 @@ DEBUG =True
 SECRET_KEY = 'wait for select'
 USERNAME = 'Jay'
 PASSWORD = 'b51816'
-UPLOAD_DIR = '/home/jay/python_study/jay_flaskr-master/upload_files/'
+UPLOAD_DIR = '/home/b51816/upload_files/'
 
 # create app
 app = Flask(__name__)
