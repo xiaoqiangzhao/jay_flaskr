@@ -1,24 +1,47 @@
-#! /home/b51816/localpython/python3/bin/python3
+#! /usr/bin/python3
 import sqlite3
 import os
 from flask import  Flask, request, session, g, redirect, url_for, abort, render_template, flash
+from flask.views import MethodView
 from contextlib import closing
+from werkzeug import secure_filename
 # configuration
 
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 DATABASE = os.path.join(PROJECT_ROOT,'db','jay_flaskr.db')
-DEBUG = True
+DEBUG =True
 SECRET_KEY = 'wait for select'
 USERNAME = 'Jay'
 PASSWORD = 'b51816'
+UPLOAD_DIR = '/home/jay/python_study/jay_flaskr-master/upload_files/'
 
 # create app
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+class UploadAPI(MethodView):
+    def get(self):
+        if not session.get('logged_in'):
+            flash("Please Log in first")
+            return redirect(url_for('login'))
+        return render_template("upload.html")
+    
+    def post(self):
+        if not session.get('logged_in'):
+            flash("Please Log in first")
+            return redirect(url_for('login'))
+        print("Processing Uploading File")
+        for key in request.files:
+            print(key)
+            f_list = request.files.getlist(key)  ## get multi files
+            for f in f_list:
+                f.save(app.config['UPLOAD_DIR']+secure_filename(f.filename))
+                flash("Successfully Uploaded {0}".format(secure_filename(f.filename)))
+        return redirect(url_for('upload_view'))
 
+upload_view = UploadAPI.as_view('upload_view')
+app.add_url_rule('/upload',view_func=upload_view,methods=['GET','POST'])
 def connect_db():
-   print("Try to connect to database {0}".format(app.config['DATABASE']))
    return sqlite3.connect(app.config['DATABASE'])
 
 def init_db():
@@ -45,10 +68,8 @@ def show_entries():
 
 @app.route('/add',methods=['POST'])
 def add_entry():
-   print("adding entry")
    if not session.get('logged_in'):
       abort(401)
-   print(type(g))
    g.db.execute('insert into entries (title,bom,description,explanation, solution,status) values (?,?,?,?,?,?)',[request.form['title'],request.form['bom'],request.form['description'],request.form['explanation'], request.form['solution'],request.form['status']])
    g.db.commit()
    flash("New entry was successfully posted")

@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
 {% if session.logged_in %}
+<iframe class="music" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=3&id=9527038&auto=1&height=66"></iframe>
+<a class="re_direct" href="{{url_for('upload_view')}}">Upload Files</a>
 <form action="{{url_for('add_entry')}}" method=post class=add-entry>
    <dl>
       <dt>Title</dt>
@@ -8,12 +10,12 @@
       <dt>Bom</dt>
       <dd><input type=text size=30 name=bom></dd>
       <dt>Description</dt>
-      <dd><textarea name=description rows=5 cols=40></textarea></dd>
-      <dt>explanation</dt>
-      <dd><textarea name=textarea rows=5 cols=40></textarea></dd>
-      <dt>solution</dt>
-      <dd><textarea name=solution rows=5 cols=40></textarea></dd>
-      <dt>status</dt>
+      <dd><textarea name=description rows=5 cols=70></textarea></dd>
+      <dt>Explanation</dt>
+      <dd><textarea name=explanation rows=5 cols=70></textarea></dd>
+      <dt>Solution</dt>
+      <dd><textarea name=solution rows=5 cols=70></textarea></dd>
+      <dt>Status</dt>
       <dd><input type=text size=30 name=status></dd>
       <dd><input type=submit value='Add Recored'></dd>
    </dl>
@@ -21,7 +23,7 @@
 {% endif %}
 <ul class=entries>
   {% for entry in entries %}
-  <li><h2>{{ entry.title }}</h2>{{ entry.bom|safe }} {{entry.desc}} {{entry.expl}}{{entry.solu}}{{entry.status}}
+  <li><h2>{{ entry.title }}</h2>{{ entry.bom|safe }} {{entry.desc}} {{entry.expl}} {{entry.solu}}  {{entry.status}}
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}

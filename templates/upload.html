@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Upload File</h2>
+<body align="left">
+      <form action="/upload" method="post" enctype="multipart/form-data">
+         <!--<legend>Upload File:</legend>-->
+         <p>Choose Your File</p>
+         <p><input type="file" name="files[]" placeholder="file" multiple></p>
+         <p><input type="submit" value="Upload"></p>
+      </form>
+   </body> 
+{% endblock %}
