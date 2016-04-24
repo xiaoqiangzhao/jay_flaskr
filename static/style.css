@@ -7,6 +7,8 @@ iframe.music    {position: fixed; right:2px; bottom: 4px}
 a.re_direct     {position:fixed; left: 4px; bottom: 40px}
 .page           { margin: 2em auto; width: auto; border: 5px solid #ccc;
                   padding: 0.8em; background: white; }
+/*h1.bc_grad        {background: -webkit-linear-gradient(top,#086dd3,#055db5;}*/
+/*h1.bc_grad        {background: #1cdf9f}*/
 .entries        { list-style: none; margin: 0; padding: 0; }
 .entries li     { margin: 0.8em 1.2em; }
 .entries li h2  { margin-left: -1em; }
@@ -14,6 +16,8 @@ a.re_direct     {position:fixed; left: 4px; bottom: 40px}
 .add-entry dl   { font-weight: bold; }
 .metanav        { text-align: right; font-size: 1.6em; padding: 0.3em;
                   margin-bottom: 1em; background: #fafafa; }
+.metanav a      {text-decoration: none}            
+.page h1      {background: #1cdf9f}
 .flash          { background: #cee5F5; padding: 0.5em;
                   border: 1px solid #aacbe2; }
 .error          { background: #f0d6d6; padding: 0.5em; }
