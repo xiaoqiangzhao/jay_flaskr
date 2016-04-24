@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block body %}
+<ul class=entries>
+   <a class=home ; href="/">Click to back Home</a>
+   <hr/>
+  {% for entry in entries %}
+   <li>
+   <h2>Title</h2>
+   <hr/>
+   <p>{{entry.title}}</p>
+   <hr/>
+   </li>
+
+   <li>
+   <h2>Bom</h2>
+   <hr/>
+   <p>{{entry.bom}}</p>
+   <hr/>
+   </li>
+
+   <li>
+   <h2>Description</h2>
+   <hr/>
+   <p>{{entry.desc}}</p>
+   <hr/>
+   </li>
+
+   <li>
+   <h2>Explanation</h2>
+   <hr/>
+   <p>{{entry.expl}}</p>
+   <hr/>
+   </li>
+
+   <li>
+   <h2>Solution</h2>
+   <hr/>
+   <p>{{entry.solu}}</p>
+   <hr/>
+   </li>
+
+
+   <li>
+   <h2>Status</h2>
+   <hr/>
+   <p>{{entry.status}}</p>
+   <hr/>
+   </li>
+
+  <!--<li><h2>{{ entry.title }}</h2>{{ entry.bom|safe }} {{entry.desc}} {{entry.expl}} {{entry.solu}}  {{entry.status}}-->
+  {% else %}
+    <li><em>No Such A Record</em>
+  {% endfor %}
+  </ul>
+
+{% endblock %}

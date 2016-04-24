@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
+<div id=container>
 {% if session.logged_in %}
-<iframe class="music" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=3&id=9527038&auto=1&height=66"></iframe>
-<a class="re_direct" href="{{url_for('upload_view')}}">Upload Files</a>
+<!--<a class="re_direct" href="{{url_for('upload_view')}}">Upload Files</a>-->
+<div id=add>
 <form action="{{url_for('add_entry')}}" method=post class=add-entry>
    <dl>
       <dt>Title</dt>
@@ -17,16 +18,22 @@
       <dd><textarea name=solution rows=5 cols=70></textarea></dd>
       <dt>Status</dt>
       <dd><input type=text size=30 name=status></dd>
+      <br/>
       <dd><input type=submit value='Add Recored'></dd>
    </dl>
 </form>
+</div>
 {% endif %}
+<div id=items>
 <ul class=entries>
+   <h3>All Entries:</h3>
   {% for entry in entries %}
-  <li><h2>{{ entry.title }}</h2>{{ entry.bom|safe }} {{entry.desc}} {{entry.expl}} {{entry.solu}}  {{entry.status}}
+  <!--<li><h2>{{ entry.title }}</h2>{{ entry.bom|safe }} {{entry.desc}} {{entry.expl}} {{entry.solu}}  {{entry.status}}-->
+  <li><a href="/items/{{entry.item_id}}" >{{entry.title}}</a></li>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
   </ul>
+  </div>
+  </div>
   {% endblock %}
-

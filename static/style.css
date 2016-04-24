@@ -12,12 +12,19 @@ a.re_direct     {position:fixed; left: 4px; bottom: 40px}
 .entries        { list-style: none; margin: 0; padding: 0; }
 .entries li     { margin: 0.8em 1.2em; }
 .entries li h2  { margin-left: -1em; }
+.entries a      {text-decoration:none;font-style:oblique }
+a.home          {font-style:normal;font-size:1.4em ;font-weight:bold}
+.entries p      {text-indent:2em; color:#0cf61c;font-style:oblique }
+.entries hr     {color:#1bdb14; background-color:#fafafa}
 .add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
 .add-entry dl   { font-weight: bold; }
 .metanav        { text-align: right; font-size: 1.6em; padding: 0.3em;
                   margin-bottom: 1em; background: #fafafa; }
-.metanav a      {text-decoration: none}            
-.page h1      {background: #1cdf9f}
+.metanav a      {text-decoration: none; background-color:#5e60f2; color: white}            
+.page h1      {background: #1cdf9f;text-align:center}
 .flash          { background: #cee5F5; padding: 0.5em;
                   border: 1px solid #aacbe2; }
 .error          { background: #f0d6d6; padding: 0.5em; }
+div#container   {width:30em}
+div#add         {width:25em, float:left}
+div#items       {width:20em, float:left;background:#38c6f0}

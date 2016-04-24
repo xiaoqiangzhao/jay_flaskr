@@ -19,6 +19,20 @@ UPLOAD_DIR = '/home/b51816/upload_files/'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+class ShowItemAPI(MethodView):
+   def get(self,item_id):
+        if not session.get('logged_in'):
+            flash("Please Log in first")
+            return redirect(url_for('login')) 
+        cur = g.db.execute('select title, bom, description,explanation,solution,status from entries where id=(?)',(item_id,))
+        entries = [dict(title=row[0],bom=row[1],desc=row[2],expl=row[3],solu=row[4],status=row[5],) for row in cur.fetchall()]
+
+        return render_template("show_items.html",entries=entries)
+
+showitem_view = ShowItemAPI.as_view('showitem_view')
+app.add_url_rule('/items/<int:item_id>',view_func=showitem_view,methods=['GET'])
+
+      
 class UploadAPI(MethodView):
     def get(self):
         if not session.get('logged_in'):
@@ -62,8 +76,8 @@ def teardown_request(exception):
 
 @app.route('/')
 def show_entries():
-   cur = g.db.execute('select title, bom, description,explanation,solution,status from entries order by id desc')
-   entries = [dict(title=row[0],bom=row[1],desc=row[2],expl=row[3],solu=row[4],status=row[5]) for row in cur.fetchall()]
+   cur = g.db.execute('select title, bom, description,explanation,solution,status,id from entries order by id desc')
+   entries = [dict(title=row[0],bom=row[1],desc=row[2],expl=row[3],solu=row[4],status=row[5],item_id=row[6]) for row in cur.fetchall()]
    return render_template('show_entries.html',entries=entries)
 
 @app.route('/add',methods=['POST'])
