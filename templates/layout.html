@@ -3,7 +3,9 @@
 <link rel=stylesheet type=text/css href="{{url_for('static', filename='style.css')}}">
 <div class=page>
    <h1 class=bc_grad>Jay's First Flaskr</h1>
+   
    <iframe class="music" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=3&id=9527038&auto=1&height=66"></iframe>
+   <form action='http://dictionary.cambridge.org/search/british/direct/?utm_source=widget_searchbox_source&utm_medium=widget_searchbox&utm_campaign=widget_tracking' method='post'> <table style='font-size:10px;background:#292929;border-collapse:collapse;border-spacing:0;width:150px;' > <tbody> <tr> <td colspan='2' style='padding:0;background:none;border:none;'> <a href='http://dictionary.cambridge.org/' style='display:block; background: transparent url(http://dictionary.cambridge.org/external/images/freesearch/sbl.png?version=2017-06-28-1634) no-repeat 5px 6px;height:32px;'></a> </td> </tr> <tr> <td style='width:68px;background:none;border:none;padding:4px;'> <input style='width:100%;display:block;font-size:10px;padding:2px;border:none;' name='q' /> </td> <td style='width:50px;background:none;border:none;padding:0 4px 0 0;'> <input style='width:100%;display:block;font-size:10px;padding:2px;border:none;float:right;background:#d0a44c;' type='submit' value='Look it up' /> </td> </tr> </tbody> </table> </form>
    <div class=metanav>
       {% if not session.logged_in %}
          <a href="{{url_for('login')}}">LOG IN</a>

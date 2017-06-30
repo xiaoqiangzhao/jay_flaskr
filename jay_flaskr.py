@@ -13,7 +13,7 @@ DEBUG =True
 SECRET_KEY = 'wait for select'
 USERNAME = 'Jay'
 PASSWORD = 'b51816'
-UPLOAD_DIR = '/home/b51816/upload_files/'
+UPLOAD_DIR = '/proj/imx8qx_nobk6/b51816/UPLOAD/'
 
 # create app
 app = Flask(__name__)
@@ -23,7 +23,7 @@ class ShowItemAPI(MethodView):
    def get(self,item_id):
         if not session.get('logged_in'):
             flash("Please Log in first")
-            return redirect(url_for('login')) 
+            return redirect(url_for('login'))
         cur = g.db.execute('select title, bom, description,explanation,solution,status from entries where id=(?)',(item_id,))
         entries = [dict(title=row[0],bom=row[1],desc=row[2],expl=row[3],solu=row[4],status=row[5],) for row in cur.fetchall()]
 
@@ -32,14 +32,14 @@ class ShowItemAPI(MethodView):
 showitem_view = ShowItemAPI.as_view('showitem_view')
 app.add_url_rule('/items/<int:item_id>',view_func=showitem_view,methods=['GET'])
 
-      
+
 class UploadAPI(MethodView):
     def get(self):
         if not session.get('logged_in'):
             flash("Please Log in first")
             return redirect(url_for('login'))
         return render_template("upload.html")
-    
+
     def post(self):
         if not session.get('logged_in'):
             flash("Please Log in first")
@@ -111,5 +111,5 @@ def logout():
 
 if __name__ =='__main__':
    app.run(debug=app.config['DEBUG'],host='0.0.0.0')
-   
+
 
